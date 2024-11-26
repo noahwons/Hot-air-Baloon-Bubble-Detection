@@ -1,59 +1,110 @@
-YOLOv5 Bubble Detection for Hot Air Balloon Viles
+Here’s the same `README.md` file with markdown annotations to guide you through each section:
+
+---
+
+# YOLOv5 Bubble Detection for Hot Air Balloon Viles
+
 This project uses a YOLOv5 model trained to detect bubbles in hot air balloon viles. The model can detect bubbles in video frames, making it useful for automated bubble detection in various hot air balloon scenarios.
 
-Table of Contents
-Installation
-Requirements
-Usage
-Training
-Acknowledgements
-Installation
-Clone this repository:
+## Table of Contents
 
-bash
-Copy code
+- [Installation](#installation)
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [Training](#training)
+- [Acknowledgements](#acknowledgements)
+
+---
+
+## Installation
+
+### Step 1: Clone the repository
+
+Clone this repository to your local machine using the following command:
+
+```bash
 git clone https://github.com/noahwons/Hot-air-Baloon-Bubble-Detection.git
 cd Hot-air-Baloon-Bubble-Detection
-Install the required dependencies using pip:
+```
 
-bash
-Copy code
+This will create a local copy of the repository and navigate into the project directory.
+
+### Step 2: Install dependencies
+
+Ensure you have Python 3.7+ installed and then install the required dependencies using `pip`:
+
+```bash
 pip install -U -r requirements.txt
-Requirements
-Python 3.7+
-torch (PyTorch)
-opencv-python (for video/image processing)
-yolov5 (for detection)
-Ensure that you have a working environment with these dependencies installed.
+```
 
-Usage
-To run inference and detect bubbles in a video file, use the following command:
+This will install all the necessary libraries and dependencies, including PyTorch, OpenCV, and YOLOv5.
 
-bash
-Copy code
+---
+
+## Requirements
+
+- **Python 3.7+** (recommended version)
+- **PyTorch** (for deep learning framework)
+- **OpenCV** (for image/video processing)
+- **YOLOv5** (for object detection)
+
+Make sure your environment has these dependencies installed for smooth execution.
+
+---
+
+## Usage
+
+### Running the Model
+
+To run inference and detect bubbles in a video, use the following command:
+
+```bash
 python detect.py --weights runs/train/exp3/weights/best.pt --device cpu --source /Users/noahwons/Downloads/bubbles_test.MP4 --view-img --img-size 1280
-Arguments:
---weights: Path to the trained YOLOv5 model weights (in this case, best.pt).
---device: Set the device for running the model (cpu or cuda for GPU).
---source: Path to the video file for bubble detection (/Users/noahwons/Downloads/bubbles_test.MP4 in this case).
---view-img: Displays the detection results in a window.
---img-size: Input image size for the model. In this case, we use 1280 to improve accuracy for small or distant bubbles.
-Example:
-For example, if your video file is located at /Users/noahwons/Downloads/bubbles_test.MP4, you can use the command above to start detection. The model will detect and display bubbles found in the video.
+```
 
-Training
-The model was trained using the YOLOv5 architecture on a custom dataset of hot air balloon viles with labeled bubble annotations. To train the model, use the following command:
+### Arguments Explained:
+- **`--weights`**: The path to the trained YOLOv5 model weights file (in this case, `best.pt`).
+- **`--device`**: Specifies the device to run the model on (`cpu` for CPU or `cuda` for GPU).
+- **`--source`**: The path to the input video file (`/Users/noahwons/Downloads/bubbles_test.MP4` in this example).
+- **`--view-img`**: Displays the detection results in an OpenCV window.
+- **`--img-size`**: Input image size for the model (set to `1280` for higher accuracy with smaller objects).
 
-bash
-Copy code
+### Example Usage:
+
+Run the model on your own video file by changing the `--source` parameter to point to the video you want to analyze. For example:
+
+```bash
+python detect.py --weights runs/train/exp3/weights/best.pt --device cpu --source /path/to/your/video_file.MP4 --view-img --img-size 1280
+```
+
+---
+
+## Training
+
+To train the model on your own dataset, use the following command:
+
+```bash
 python train.py --data bubbles_dataset.yaml --cfg yolov5s.yaml --weights '' --batch-size 16 --epochs 300
---data: Path to the dataset configuration YAML file.
---cfg: Model configuration (e.g., yolov5s.yaml for a small model).
---weights: Specify pretrained weights or leave it empty for training from scratch.
---batch-size: The number of samples per batch during training.
---epochs: The number of training epochs (300 was used for this model).
-For a more detailed training setup, refer to YOLOv5 documentation or adjust the configuration to suit your needs.
+```
 
-Acknowledgements
-This project uses the YOLOv5 model for object detection.
-Special thanks to the open-source community for creating and improving object detection models and frameworks.
+### Arguments Explained:
+- **`--data`**: Path to the dataset configuration YAML file (`bubbles_dataset.yaml`), which should define your data and class labels.
+- **`--cfg`**: Specifies the model configuration (e.g., `yolov5s.yaml` for a small model).
+- **`--weights`**: Pretrained weights file or leave empty (`''`) to train from scratch.
+- **`--batch-size`**: The number of samples per batch during training.
+- **`--epochs`**: The number of epochs (iterations) to train the model (300 epochs in this case).
+
+### Training a Custom Dataset:
+
+To train the model on a custom dataset, ensure that you have a valid dataset configuration file (`bubbles_dataset.yaml`) and appropriate labeled data (images with annotations). The dataset file should define the paths to your training and validation data, as well as the class labels.
+
+---
+
+## Acknowledgements
+
+- This project uses [YOLOv5](https://github.com/ultralytics/yolov5) for object detection, a state-of-the-art model for real-time object detection.
+- Special thanks to the open-source community and contributors who have made object detection models like YOLOv5 freely available.
+
+---
+
+This `README.md` file is now formatted with markdown annotations to help with clarity and organization. You can copy and paste this directly into your project's README file, making any adjustments as necessary for your project specifics.
