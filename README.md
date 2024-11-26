@@ -1,7 +1,3 @@
-Here’s the same `README.md` file with markdown annotations to guide you through each section:
-
----
-
 # YOLOv5 Bubble Detection for Hot Air Balloon Viles
 
 This project uses a YOLOv5 model trained to detect bubbles in hot air balloon viles. The model can detect bubbles in video frames, making it useful for automated bubble detection in various hot air balloon scenarios.
